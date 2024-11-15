@@ -1,0 +1,398 @@
+# i3 config file based on Cattendeavour template by jifuwater
+# GitHub source: https://github.com/jifuwater/Cattendeavour
+# Maintainer: joekamprad (joekamprad //a_t// endeavouros.com)
+#
+# Additional resources:
+# - Endeavouros wiki: https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
+# - Official i3 reference: http://i3wm.org/docs/userguide.html
+
+################
+# Config Start #
+################
+
+# Font for window titles and the bar. FiraCode Nerd Font offers extensive Unicode glyphs and supports right-to-left text rendering
+font pango: FiraCode Nerd Font medium 10 
+
+# Set Mod key (Super/Windows key)
+set $mod Mod4
+
+#############
+# Workspace #
+#############
+
+# Default i3 tiling mode
+workspace_layout default
+
+#############################
+# Extra options for windows #
+#############################
+
+# Border indicator for windows
+default_border pixel 1
+
+# Start Thunar file manager
+exec --no-startup-id thunar --daemon
+
+# Set inner and outer gaps
+gaps inner 5 
+gaps outer 0 
+
+# Start the polkit authentication agent
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+
+# Window title bar settings (not officially supported with i3gaps)
+default_border pixel 2
+
+# Mouse modifier for dragging floating windows
+floating_modifier $mod
+
+# Switch between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Switch to workspace
+bindcode $mod+10 workspace $ws1
+bindcode $mod+11 workspace $ws2
+bindcode $mod+12 workspace $ws3
+bindcode $mod+13 workspace $ws4
+bindcode $mod+14 workspace $ws5
+bindcode $mod+15 workspace $ws6
+bindcode $mod+16 workspace $ws7
+bindcode $mod+17 workspace $ws8
+bindcode $mod+18 workspace $ws9
+bindcode $mod+19 workspace $ws10
+
+# Switch to workspace with numpad keys
+bindcode $mod+87 workspace $ws1
+bindcode $mod+88 workspace $ws2
+bindcode $mod+89 workspace $ws3
+bindcode $mod+83 workspace $ws4
+bindcode $mod+84 workspace $ws5
+bindcode $mod+85 workspace $ws6
+bindcode $mod+79 workspace $ws7
+bindcode $mod+80 workspace $ws8
+bindcode $mod+81 workspace $ws9
+bindcode $mod+90 workspace $ws10
+
+# Switch to workspace with numlock numpad keys
+bindcode $mod+Mod2+87 workspace $ws1
+bindcode $mod+Mod2+88 workspace $ws2
+bindcode $mod+Mod2+89 workspace $ws3
+bindcode $mod+Mod2+83 workspace $ws4
+bindcode $mod+Mod2+84 workspace $ws5
+bindcode $mod+Mod2+85 workspace $ws6
+bindcode $mod+Mod2+79 workspace $ws7
+bindcode $mod+Mod2+80 workspace $ws8
+bindcode $mod+Mod2+81 workspace $ws9
+bindcode $mod+Mod2+90 workspace $ws10
+
+# Move focused container to workspace
+bindcode $mod+Shift+10 move container to workspace $ws1
+bindcode $mod+Shift+11 move container to workspace $ws2
+bindcode $mod+Shift+12 move container to workspace $ws3
+bindcode $mod+Shift+13 move container to workspace $ws4
+bindcode $mod+Shift+14 move container to workspace $ws5
+bindcode $mod+Shift+15 move container to workspace $ws6
+bindcode $mod+Shift+16 move container to workspace $ws7
+bindcode $mod+Shift+17 move container to workspace $ws8
+bindcode $mod+Shift+18 move container to workspace $ws9
+bindcode $mod+Shift+19 move container to workspace $ws10
+
+# Move focused container to workspace with numpad keys
+bindcode $mod+Shift+Mod2+87 move container to workspace $ws1
+bindcode $mod+Shift+Mod2+88 move container to workspace $ws2
+bindcode $mod+Shift+Mod2+89 move container to workspace $ws3
+bindcode $mod+Shift+Mod2+83 move container to workspace $ws4
+bindcode $mod+Shift+Mod2+84 move container to workspace $ws5
+bindcode $mod+Shift+Mod2+85 move container to workspace $ws6
+bindcode $mod+Shift+Mod2+79 move container to workspace $ws7
+bindcode $mod+Shift+Mod2+80 move container to workspace $ws8
+bindcode $mod+Shift+Mod2+81 move container to workspace $ws9
+bindcode $mod+Shift+Mod2+90 move container to workspace $ws10
+
+# Move focused container to workspace with numlock numpad keys
+bindcode $mod+Shift+87 move container to workspace $ws1
+bindcode $mod+Shift+88 move container to workspace $ws2
+bindcode $mod+Shift+89 move container to workspace $ws3
+bindcode $mod+Shift+83 move container to workspace $ws4
+bindcode $mod+Shift+84 move container to workspace $ws5
+bindcode $mod+Shift+85 move container to workspace $ws6
+bindcode $mod+Shift+79 move container to workspace $ws7
+bindcode $mod+Shift+80 move container to workspace $ws8
+bindcode $mod+Shift+81 move container to workspace $ws9
+bindcode $mod+Shift+90 move container to workspace $ws10
+
+# Resize window (mouse can also be used)
+mode "" {
+    # Resize using h, j, k, l keys
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # Same bindings for arrow keys
+    bindsym Left  resize shrink width 10 px or 10 ppt
+    bindsym Down  resize grow height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # Back to normal: Enter or Escape
+    bindsym $mod+r mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode ""
+
+####################
+# System shortcuts #
+####################
+
+# Start a terminal
+bindsym $mod+Return exec --no-startup-id kitty 
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Exit menu
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu.sh
+
+# Lock the system
+bindsym $mod+F9 exec --no-startup-id ~/.config/i3/scripts/blur-lock.sh
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 in place (preserves layout/session)
+bindsym $mod+Shift+r restart
+
+# Keybinding in fancy rofi (automated)
+bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
+
+# Backlight control
+#bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+#bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+
+# Backlight setting using dunst osc
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_down
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Alternatively, use the cursor keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Alternatively, use the cursor keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+BackSpace split toggle 
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+g layout tabbed
+bindsym $mod+t layout toggle 
+
+# Toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
+
+# Open new empty workspace
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace
+
+### Multimedia Keys ###
+
+# Volume control using dunst
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_down
+
+# Gradual volume control
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+
+# Mute using dunst
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_mute
+
+# Microphone mute toggle
+bindsym XF86AudioMicMute exec amixer sset Capture toggle
+
+# Audio control
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Redirect sound to headphones
+# bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+
+#################
+# App Shortcuts #
+#################
+
+bindsym $mod+w exec --no-startup-id /usr/bin/brave
+bindsym $mod+n exec --no-startup-id rofi -config ~/.config/rofi/todo.rasi -modi Todo:~/.config/rofi/rofitodo.sh -show Todo
+bindsym Print exec --no-startup-id flameshot full -c
+bindsym Shift+Print exec --no-startup-id flameshot gui -c
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles.sh
+# Rofi bindings for fancy application menu ($mod+d / F9 optional disabled)
+bindsym $mod+space exec --no-startup-id rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi 
+# Rofi bindings for window menu ($mod+t / F10 optional disabled)
+bindsym $mod+a exec --no-startup-id rofi -show window -config ~/.config/rofi/rofidmenu.rasi
+
+#########################################
+# Configuration for Workspace Behaviour #
+#########################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+# Custom picom config
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+############################################
+# Autostart Applications/Services on Login #
+############################################
+
+# Get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Dex execute .desktop files + apps using /etc/xdg/autostart.
+exec --no-startup-id dex --autostart --environment i3 
+
+# Start a script to setup displays
+exec --no-startup-id ~/.screenlayout/monitor.sh
+
+# Set wallpaper
+exec_always --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/Wallpapers/current-wallpaper
+#exec --no-startup-id xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --wid=%WID --loop --no-border /home/lontra/Pictures/Gifs/Train.gif
+# Set powersavings for display
+exec --no-startup-id xset s off 
+
+# Disable power saving (for example if using xscreensaver)
+exec --no-startup-id xset -dpms
+
+# Desktop notifications
+exec --no-startup-id /usr/bin/dunst
+
+# OpenRGB
+exec --no-startup-id ~/Applications/OpenRGB/OpenRGB.AppImage -p ~/.config/OpenRGB/main.orp
+
+##################
+# Floating Rules #
+##################
+
+# Set floating (non-tiling) for apps needing it
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+
+# Set floating (non-tiling) for special apps
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [window_role="About"] floating enable
+
+# Applets
+exec_always --no-startup-id nm-applet --indicator 
+exec --no-startup-id blueman-applet 
+
+######################################
+# Color Settings for Bar and Windows #
+######################################
+
+# Define color variables
+set $darkbluetrans   #313244
+set $darkblue        #b4befe
+set $lightblue       #eba0ac
+set $urgentred       #f38ba8
+set $white           #cdd6f4
+set $black           #1e1e2e
+set $purple          #6870A1
+set $darkgrey        #383c4a
+set $grey            #b0b5bd
+set $mediumgrey      #8b8b8b
+set $yellowbrown     #e1b700
+
+# Define colors for windows
+# class                  border         background      text       indicator    child_border
+client.focused           $darkblue      $black          $white     $darkblue    $darkblue 
+client.unfocused         $purple        $black          $grey      $darkgrey    $darkgrey
+client.focused_inactive  $black         $black          $grey      $darkgrey    $darkgrey
+client.urgent            $urgentred     $urgentred      $white     $darkblue    $yellowbrown
+
+############################################
+# Bar Settings (Input Comes from i3blocks) #
+############################################
+
+# Start i3bar to display a workspace bar
+# (plus the system information i3status finds out, if available)
+bar {
+    id bar-primary
+    mode dock
+	font pango: FiraCode Nerd Font medium 11.3
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
+	# Reference: https://i3wm.org/docs/userguide.html#_tray_output
+	tray_output none
+	# When strip_workspace_numbers is set to yes, any workspace that has a name of the form “[n][:][NAME]” will display only the name
+	strip_workspace_numbers yes
+	colors {
+		separator          $purple
+		background         #1e1e2eD9
+		statusline         $white
+		# border           bg            txt    
+		focused_workspace  #1e1e2eD9     #1e1e2eD9   #b4befe     
+		active_workspace   #1e1e2eD9     #1e1e2eD9   #a6adc8        
+		inactive_workspace #1e1e2eD9     #1e1e2eD9   #7f849c        
+		urgent_workspace   #1e1e2eD9     #1e1e2eD9   #a6e3a1   
+	}
+}
+
+bar {
+    id bar-tray
+    mode invisible 
+	font pango: FiraCode Nerd Font medium 11.3
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
+	# When strip_workspace_numbers is set to yes, any workspace that has a name of the form “[n][:][NAME]” will display only the name
+	strip_workspace_numbers yes
+	colors {
+		separator          $purple
+		background         #1e1e2eD9 
+		statusline         $white
+		# border           bg             txt        
+		focused_workspace  #1e1e2eD9      #1e1e2eD9   #cdd6f4     
+		active_workspace   #1e1e2eD9      #1e1e2eD9   #a6adc8        
+		inactive_workspace #1e1e2eD9      #1e1e2eD9   #7f849c        
+		urgent_workspace   #1e1e2eD9      #1e1e2eD9   #a6e3a1   
+	}
+}
